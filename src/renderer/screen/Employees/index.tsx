@@ -3,11 +3,15 @@ import { Plus } from "lucide-react";
 import { Button } from "../../components/ui/button";
 import { DataTable } from "../../components/ui/data-table";
 import { Dialog, DialogTrigger } from "../../components/ui/dialog";
-// import { useFetchEmployees } from "../../hooks/data/Employee/use-fetch-employee";
+
 import useDisclosure from "../../hooks/use-disclosure";
+import AddEmployee from "../../components/Dialog/AddEmployee";
+import { useFetchEmployees } from "../../hooks/data/Employee/use-fetch-employee";
+import { columns } from "../../components/DataTableColumns/EmployeeColumns";
 
 export default function Employees() {
   const { isOpen, toggle } = useDisclosure();
+  const { employees } = useFetchEmployees();
 
   return (
     <>
@@ -23,10 +27,13 @@ export default function Employees() {
                 New employee
               </Button>
             </DialogTrigger>
+            <AddEmployee toggle={toggle} />
           </Dialog>
         </div>
       </div>
-      <div className="p-5 w-full"></div>
+      <div className="p-5 w-full">
+        {employees && <DataTable columns={columns} data={employees} />}
+      </div>
     </>
   );
 }

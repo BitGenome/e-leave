@@ -3,9 +3,9 @@ import path from "path";
 
 const productionDbName = path.join(
   app.getPath("userData"),
-  "database/eLeave_prod.db"
+  "database/eLeave.db"
 );
-const developmentDbName = "database/eLeave_dev.db";
+const developmentDbName = "database/eLeave.db";
 
 export const isProduction = app.isPackaged;
 

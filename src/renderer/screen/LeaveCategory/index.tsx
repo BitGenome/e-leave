@@ -3,6 +3,7 @@ import { Button } from "../../components/ui/button";
 import { Dialog, DialogTrigger } from "../../components/ui/dialog";
 
 import { DataTable } from "../../components/ui/data-table";
+import AddLeaveCategory from "../../components/Dialog/AddLeaveType";
 
 export default function LeaveCategory() {
   return (
@@ -20,6 +21,7 @@ export default function LeaveCategory() {
                 New leave type
               </Button>
             </DialogTrigger>
+            <AddLeaveCategory />
           </Dialog>
         </div>
       </div>

@@ -19,7 +19,7 @@ export interface LeavetypeAttributes
   accrual_rate?: number;
 }
 
-const Leavetype = sequelize.define<LeavetypeAttributes>("Leavetype", {
+const Leavetype = sequelize.define<LeavetypeAttributes>("leavetypes", {
   id: {
     type: DataTypes.UUIDV4,
     primaryKey: true,

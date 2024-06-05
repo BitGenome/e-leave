@@ -15,6 +15,7 @@ async function addLeaveCategoryHandler(
   _event: any,
   props: TLeavetype
 ): Promise<Response<string>> {
+  console.log("props", props);
   const response = await Leavetype.create({
     name: props.category_name,
     accrual_rate: props.accrual_rate,
@@ -49,9 +50,10 @@ async function getLeaveCategory(): Promise<
     data: response,
   };
 }
-function LeaveCategoryService() {
+
+function LeaveTypeService() {
   ipc.handle(LEAVE_TYPE.LEAVE_TYPE_ADD, addLeaveCategoryHandler);
   ipc.handle(LEAVE_TYPE.LEAVE_TYPE_GET_ALL, getLeaveCategory);
 }
 
-export default LeaveCategoryService;
+export default LeaveTypeService;

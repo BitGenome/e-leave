@@ -51,9 +51,35 @@ async function getLeaveCategory(): Promise<
   };
 }
 
+async function deleteLeaveType(
+  _event: any,
+  props: Pick<TLeavetype, "id">
+): Promise<Response<string>> {
+  try {
+    await Leavetype.destroy({
+      where: {
+        id: props.id,
+      },
+    });
+
+    return {
+      code: RESPONSE.success.code,
+      message: RESPONSE.success.message,
+      data: "Successfully deleted the employee",
+    };
+  } catch (error) {
+    return {
+      code: RESPONSE.server_error.code,
+      message: RESPONSE.server_error.message,
+      data: `Error: ${error}`,
+    };
+  }
+}
+
 function LeaveTypeService() {
   ipc.handle(LEAVE_TYPE.LEAVE_TYPE_ADD, addLeaveCategoryHandler);
   ipc.handle(LEAVE_TYPE.LEAVE_TYPE_GET_ALL, getLeaveCategory);
+  ipc.handle(LEAVE_TYPE.LEAVE_TYPE_DELETE, deleteLeaveType);
 }
 
 export default LeaveTypeService;

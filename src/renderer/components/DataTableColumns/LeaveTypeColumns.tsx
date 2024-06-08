@@ -16,6 +16,7 @@ import {
 import { useToast } from "../ui/use-toast";
 import { LeavetypeAttributes } from "../../../main/models/leave_type";
 import { EMPLOYEE_CHANNELS } from "../../../main/channels/employees.channel";
+import { LEAVE_TYPE } from "../../../main/channels/leave-type.channels";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -82,7 +83,7 @@ export const leaveTypeColumns: ColumnDef<LeavetypeAttributes>[] = [
       async function handleDeleteEmployee() {
         const { id } = row.original;
         const response = await window.electron.ipcRenderer.invoke(
-          EMPLOYEE_CHANNELS.EMPLOYEE_DELETE_BY_ID,
+          LEAVE_TYPE.LEAVE_TYPE_DELETE,
           { id }
         );
         if (response.code === 200)

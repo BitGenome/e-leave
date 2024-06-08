@@ -20,6 +20,8 @@ import {
   FormMessage,
 } from "../ui/form";
 import { Input } from "../ui/input";
+import { ResponseErrorCode } from "../../../main/types/response";
+import { useToast } from "../ui/use-toast";
 
 const categorySchema = z.object({
   category_name: z.string().min(1, {
@@ -30,7 +32,9 @@ const categorySchema = z.object({
 
 export type LeaveType = z.infer<typeof categorySchema>;
 
-export default function AddLeaveCategory() {
+export default function AddLeaveCategory({ toggle }: { toggle: () => void }) {
+  const { toast } = useToast();
+
   const form = useForm<LeaveType>({
     resolver: zodResolver(categorySchema),
     defaultValues: {
@@ -40,7 +44,22 @@ export default function AddLeaveCategory() {
   });
   async function onSubmit(values: LeaveType) {
     const response = await addLeaveTypeService(values);
-    console.log("response", response);
+    if (response.code !== ResponseErrorCode.Success) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Something went wrong.",
+      });
+    }
+
+    /**
+     * if success we close the modal
+     */
+    toggle();
+    toast({
+      title: "Success",
+      description: "Successfully added leave type",
+    });
   }
   return (
     <DialogContent className="sm:max-w-[425px]">

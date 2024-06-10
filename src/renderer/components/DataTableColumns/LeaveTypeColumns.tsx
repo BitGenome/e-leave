@@ -108,6 +108,7 @@ export const leaveTypeColumns: ColumnDef<LeavetypeAttributes>[] = [
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
 
             <DropdownMenuSeparator />
+            <DropdownMenuItem>Edit</DropdownMenuItem>
             <DropdownMenuItem
               onClick={handleDeleteEmployee}
               className="text-red-500"

@@ -8,6 +8,7 @@ import Employees from "./screen/Employees";
 import LeaveReports from "./screen/LeaveReports";
 import LeaveCategory from "./screen/LeaveCategory";
 import MainLayout from "./components/Layout/Main";
+import FileLeaveForm from "./screen/FileLeave/Leaveform";
 
 export default function App() {
   return (
@@ -17,7 +18,8 @@ export default function App() {
           <Routes>
             <Route element={<MainLayout />}>
               <Route path={ROUTES.DASHBOARD} element={<Main />} />
-              <Route path={ROUTES.FILE_LEAVE} element={<FileLeave />} />
+              <Route path={ROUTES.FILE_LEAVE} element={<FileLeave />}></Route>
+              <Route path={ROUTES.LEAVE_FORM} element={<FileLeaveForm />} />
               <Route path={ROUTES.EMPLOYEES} element={<Employees />} />
               <Route path={ROUTES.LEAVE_REPORTS} element={<LeaveReports />} />
               <Route path={ROUTES.LEAVE_CATEGORY} element={<LeaveCategory />} />

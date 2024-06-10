@@ -23,6 +23,7 @@ const createWindow = (): void => {
 
   // and load the index.html of the app.
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
+  mainWindow.maximize();
 
   // Open the DevTools when in dev.
   app.isPackaged === false && mainWindow.webContents.openDevTools();

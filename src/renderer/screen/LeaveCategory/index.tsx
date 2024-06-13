@@ -11,12 +11,13 @@ import useDisclosure from "../../hooks/use-disclosure";
 export default function LeaveCategory() {
   const { leaveType } = usefetchLeaveType();
   const { isOpen, toggle } = useDisclosure();
+
   return (
     <div className="w-full">
       <div className="border-b p-5 h-20 ">
         <div className="flex justify-between">
           <h2 className="scroll-m-20 pb-2 text-xl font-bold  first:mt-0">
-            Leave Category
+            Leave Type
           </h2>
 
           <Dialog open={isOpen} onOpenChange={toggle}>

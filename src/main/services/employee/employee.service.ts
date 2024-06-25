@@ -14,6 +14,7 @@ type EmployeeProps = {
   firstname: string;
   lastname: string;
   position: string;
+  fullName: string;
 };
 
 async function AddEmployeeHandler(
@@ -43,16 +44,25 @@ async function AddEmployeeHandler(
 
 async function getAllEmployee(): Promise<Response<EmployeeProps[] | string>> {
   const employeeData = await Employee.findAll({ raw: true });
+
   if (!employeeData || employeeData.length === 0)
     return {
       code: RESPONSE.server_error.code,
       message: RESPONSE.server_error.message,
       data: "Employees not found",
     };
+
+  const employee = employeeData.map((employee) => {
+    return {
+      ...employee,
+      fullName: `${employee.firstname} ${employee.lastname}`,
+    };
+  });
+
   return {
     code: RESPONSE.success.code,
     message: RESPONSE.success.message,
-    data: employeeData,
+    data: employee,
   };
 }
 

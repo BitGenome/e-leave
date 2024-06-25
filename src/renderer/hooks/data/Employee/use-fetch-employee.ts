@@ -1,12 +1,14 @@
 /* eslint-disable import/prefer-default-export */
-import { useCallback, useEffect, useState } from 'react';
-import { EmployeeAttributes } from '../../../../main/models/employee';
-import { fetchEmployeesService } from '../../../services/employee/fetch-employees.service';
+import { useCallback, useEffect, useState } from "react";
+import { EmployeeAttributes } from "../../../../main/models/employee";
+import { fetchEmployeesService } from "../../../services/employee/fetch-employees.service";
+
+export type Employee = EmployeeAttributes & {
+  fullName: string;
+};
 
 export const useFetchEmployees = () => {
-  const [employees, setEmployees] = useState<EmployeeAttributes[] | undefined>(
-    [],
-  );
+  const [employees, setEmployees] = useState<Employee[] | undefined>([]);
 
   async function fetchEmployees() {
     try {
